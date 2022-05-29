@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star War</title>
+    <style>
+        body{
+            background: url("https://i.gifer.com/WUxL.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #search{
+            width: 40%;
+            height: 40px;
+            border-radius: 10px;
+           margin-top: 320px;
+           margin-left: 470px;
+        }
+        h1{
+            position: relative;
+            top: 330px;
+            left: 660px;
+            color: yellow;
+            font-size: 40px;
+          }
+          #searchbox{
+              border: 1px ;
+              height: 100px;
+              width: 40%;
+              margin-left: 473px;
+              
+             
+              border-radius: 5px;
+          }
+          #chotabox{
+            height: 20px;
+              width: 100%;
+              background-color: white;
+          }
+    </style>
+</head>
+<body>
+    <h1>Star Wars</h1>
+    <input id="search" placeholder="Search" oninput="debouncefunction(main,1000)" >
+    <div id="searchbox">
+
+    </div>
+</body>
+</html>
+<script>
+    var id
+    var url=` https://swapi.dev/api/people/?search={your_search_term}`
+
+   async function searchbar(q){
+    let url=`https://swapi.dev/api/people/?search=${q}`
+    let res= await fetch(url)
+    let user= await res.json()
+    console.log(user.results)
+    append(user.results)
+
+  }
+
+    function main(){
+        try{
+            var query=document.getElementById("search").value 
+        console.log(query)
+            searchbar(query)
+        }
+        catch(error){
+     console.log(error)
+        }
+    }
+
+    function append(data){
+        document.getElementById("searchbox").innerHTML=null
+
+        if(data===null){
+            document.getElementById("searchbox").innerHTML=null
+            return false
+        }
+        data.forEach(function(ele){
+          
+            let color=document.getElementById("searchbox")
+            color.style.backgroundColor="white"
+            // color.style.overflow="scroll"
+            color.style.overflow="auto"
+            color.style.overflowX="hidden"
+          
+
+            let chotadibba=document.createElement("div")
+            chotadibba.setAttribute("id","chotabox")
+
+            let names=document.createElement("p")
+            names.innerText=ele.name
+            
+            chotadibba.append(names)
+
+            document.getElementById("searchbox").append(chotadibba)
+        })
+    }
+
+    function debouncefunction(func,delay){
+     
+     if(id){
+       clearTimeout(id)
+   }
+ id=setTimeout(function(){
+     func()
+ },delay)
+ }
+
+
+    
+</script>
