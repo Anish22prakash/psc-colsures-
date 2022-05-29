@@ -7,9 +7,8 @@
     <title>Star War</title>
     <style>
         body{
-            background: url("https://i.gifer.com/WUxL.gif");
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-image: url("https://media4.giphy.com/media/U3qYN8S0j3bpK/giphy.webp?cid=ecf05e47mh882mlchv3hjp4ti1qfrtlgc6r54l645ayc360l&rid=giphy.webp&ct=g");
+           
         }
         #search{
             width: 40%;
@@ -27,18 +26,21 @@
           }
           #searchbox{
               border: 1px ;
-              height: 100px;
+              height: auto;
               width: 40%;
               margin-left: 473px;
-              
-             
-              border-radius: 5px;
+              border-radius: 10px;
           }
           #chotabox{
             height: 20px;
               width: 100%;
               background-color: white;
           }
+          #para{
+              font-size: 20px;
+            
+          }
+          
     </style>
 </head>
 <body>
@@ -85,7 +87,9 @@
             let color=document.getElementById("searchbox")
             color.style.backgroundColor="white"
             // color.style.overflow="scroll"
+           
             color.style.overflow="auto"
+            
             color.style.overflowX="hidden"
           
 
@@ -93,6 +97,7 @@
             chotadibba.setAttribute("id","chotabox")
 
             let names=document.createElement("p")
+            names.setAttribute("id","para")
             names.innerText=ele.name
             
             chotadibba.append(names)
